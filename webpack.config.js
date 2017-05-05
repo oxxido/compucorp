@@ -1,16 +1,14 @@
 
 var webpack = require('webpack'),
 path = require('path'),
-ExtractTextPlugin = require("extract-text-webpack-plugin");
+ExtractTextPlugin = require('extract-text-webpack-plugin'),
+HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const productionMode = (process.env.NODE_ENV==='production');
 
 module.exports = {
     entry: {
-        app: [
-            './src/main.js',
-            './src/style.scss',
-        ]
+        app: './src/app/app.js',
     },
     output: {
         path: path.resolve(__dirname, './dist'),
@@ -26,18 +24,28 @@ module.exports = {
                 }),
             },
             {
-                test: /\.js$/, 
+                test: /\.html$/,
+                //loader: "html",
+                loader: `ngtemplate-loader?requireAngular&relativeTo=${path.resolve(__dirname, './src')}/!html-loader`,
+            },
+            {
+                test: /\.js$/,
                 exclude: /node_modules/,
                 use: 'babel-loader',
             },
+            { test: /[\/]angular\.js$/, loader: "exports?angular" }
         ]
     },
+    devtool: "#inline-source-map",
     plugins: [
-        new webpack.optimize.UglifyJsPlugin(),
+        // new webpack.optimize.UglifyJsPlugin(),
         new ExtractTextPlugin('styles.css'),
         new webpack.LoaderOptionsPlugin({
           minimize: productionMode,
+        }),
+        new HtmlWebpackPlugin({
+            filename: 'index.html',
+            template: 'src/index.ejs'
         })
     ]
 };
-
