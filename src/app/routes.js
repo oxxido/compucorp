@@ -1,4 +1,5 @@
-import homeTemplate from './components/home/home.html';
+import HomeTemplate from './components/home/home.html';
+import TestTemplate from './components/home/test/test.html';
 
 uiRouterConfig.$inject = ['$urlRouterProvider', '$stateProvider'];
 
@@ -8,7 +9,12 @@ function uiRouterConfig($urlRouterProvider, $stateProvider) {
       .state('home', {
             url: '/',
             controller: 'HomeController as homeCtrl',
-            templateUrl: homeTemplate,
+            templateUrl: HomeTemplate,
+        })
+      .state('home/test', {
+            url: '/test',
+            controller: 'TestController as testCtrl',
+            templateUrl: TestTemplate,
         })
 }
 

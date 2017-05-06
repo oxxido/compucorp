@@ -2,7 +2,8 @@
 var webpack = require('webpack'),
 path = require('path'),
 ExtractTextPlugin = require('extract-text-webpack-plugin'),
-HtmlWebpackPlugin = require('html-webpack-plugin');
+HtmlWebpackPlugin = require('html-webpack-plugin')
+CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const productionMode = (process.env.NODE_ENV==='production');
 
@@ -33,7 +34,11 @@ module.exports = {
                 exclude: /node_modules/,
                 use: 'babel-loader',
             },
-            { test: /[\/]angular\.js$/, loader: "exports?angular" }
+            {
+                test: /\.(jpe?g|gif|png|svg|woff|ttf|wav|mp3)$/,
+                loader: 'file',
+            }
+            //{ test: /[\/]angular\.js$/, loader: "exports?angular" }
         ]
     },
     devtool: "#inline-source-map",
@@ -46,6 +51,16 @@ module.exports = {
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: 'src/index.ejs'
-        })
+        }),
+        new CopyWebpackPlugin([
+            {
+                from: path.join(__dirname, 'src/images/'),
+                to: 'images/',
+            },
+            {
+                from: path.join(__dirname, 'src/fonts/'),
+                to: 'fonts/',
+            },
+        ]),
     ]
 };
