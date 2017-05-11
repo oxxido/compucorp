@@ -1,4 +1,5 @@
 
+import './_home.scss';
 
 HomeController.$inject = ['Spotify'];
 
