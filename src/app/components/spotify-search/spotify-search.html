@@ -3,7 +3,7 @@
         <div ng-click="$ctrl.onAlbumClick({result: result})">
             <span ng-if="result.type==='album'">
                 <div >
-                    <img ng-src="{{ result.images[1].url }}" />
+                    <img class="img-search" ng-src="{{ result.images[1].url }}" />
                 </div>
                 <div class="search-container__footer">
                     {{ result.name }} - {{ $ctrl.getArtists(result.artists) }}

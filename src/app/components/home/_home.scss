@@ -98,16 +98,46 @@
 
 
 .search-container {
-    padding: 15px 30px;
-    display: flex;
+        padding: 15px 30px;
+        overflow: auto;
+        text-align: center;
+        /*
+        display: flex;
+        */
 
     &__album {
-        flex: 1;
+        /* flex: 1; */
+        max-width: 255px;
+        width: inherit;
+        /* height: 330px; */
+        margin: 30px 20px;
+        color: #2a2a33;
+        background-color: #fff;
+        border-radius: 7px;
+        display: inline-block;
+        -webkit-box-shadow: 0 0 40px 11px rgba(0,0,0,.17);
+        -moz-box-shadow: 0 0 40px 11px rgba(0,0,0,.17);
+        box-shadow: 0 0 40px 11px rgba(0,0,0,.17);    
     }
 
     &__footer {
-        color: $white;
+/*      color: $white;    */
+        padding: 24px 20px;
+        color: #2a2a33;
+        max-width: 255px;
+        font-size: 17px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-align: left;
+
     }
+
+}
+.img-search {
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+
 }
 
 footer {
