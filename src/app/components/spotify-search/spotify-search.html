@@ -1,0 +1,22 @@
+<div class="search-container">
+    <div class="search-container__album" ng-repeat="result in $ctrl.results">
+        <div ng-click="$ctrl.onAlbumClick({result: result})">
+            <span ng-if="result.type==='album'">
+                <div >
+                    <img ng-src="{{ result.images[1].url }}" />
+                </div>
+                <div class="search-container__footer">
+                    {{ result.name }} - {{ $ctrl.getArtists(result.artists) }}
+                </div>
+            </span>
+            <span ng-if="result.type==='artist'">
+                <div >
+                    <img ng-src="{{ result.images[1].url || 'https://placehold.it/300x300' }}" />
+                </div>
+                <div class="search-container__footer">
+                    {{ result.name }}
+                </div>
+            </span>
+        </div>
+    </div>
+</div>

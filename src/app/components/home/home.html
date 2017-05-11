@@ -12,15 +12,32 @@
     </header>
     <div class="search">
         <div class="search__form-wrapper">
-            <input type="text" name="search" class="search__input">
-            <button class="search__button">Search</button>
+            <input type="text" name="search" class="search__input" ng-model="homeCtrl.searchString" placeholder="Search for artist or album title">
+            <button class="search__button" ng-click="homeCtrl.onSearch()">Search</button>
+
         </div>
     </div>
-    <div class="results">
-            
+    <div class="results" ng-if="!homeCtrl.results.length">
+        <div class="results__loupe" >
+            <img src="/images/Magnify@2x.png" alt="Loupe">
         </div>
+        <div class="results__tip">
+            Your results will appear here
+        </div>
+    </div>
+    <div class="results" ng-if="homeCtrl.results.length > 0">
+        <spotify-search
+            results="homeCtrl.results"
+            on-album-click="homeCtrl.openAlbum(result)"></spotify-search>
+    </div>
     <footer>
-        
+        <div class="copyright">
+            Designed by Geek Label - Powered by Spotify
+        </div>
     </footer>
 </div>
 
+<spotify-modal
+    album="homeCtrl.currentAlbum"
+    is-open="homeCtrl.modalShown"
+    on-close="homeCtrl.onModalToggleClick()"></spotify-modal>
