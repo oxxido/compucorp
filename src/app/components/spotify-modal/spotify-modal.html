@@ -3,9 +3,36 @@
 <div class="modal" ng-if="$ctrl.isOpen">
 
     <!-- Modal content -->
-    <div class="modal-content">
-        <span class="close" ng-click="$ctrl.onClose()">&times;</span>
-        {{ $ctrl.album | json }}
+    <div class="modal__content">
+        <div class="modal__image-header">
+            <img class="modal__image" ng-src="{{ $ctrl.album.images[1].url || 'https://placehold.it/300x300' }}" />
+        </div>
+        <div class="modal__body">
+            <span class="close" ng-click="$ctrl.onClose()">&times;</span>
+            <div class="modal__footer" ng-if="!$ctrl.isFetching">
+                {{ $ctrl.album.name }}
+                <br>
+                <br>
+                <div ng-if="$ctrl.album.tracks.items">
+                    <h3>Tracklist:</h3>
+                    <br>
+                    <p ng-repeat="track in $ctrl.album.tracks.items">
+                    {{ track.name }}
+                    </p>
+                </div>
+                <div ng-if="$ctrl.album.genres.length > 0">
+                    <h3>Genres:</h3>
+                    <br>
+                    <p ng-repeat="genre in $ctrl.album.genres">
+                    - {{ genre }}
+                    </p>
+                </div>
+            </div>
+            <div ng-if="$ctrl.isFetching">
+                Getting info...
+            </div>
+            <!-- <small><pre>{{ $ctrl.album | json }}</pre></small> -->
+        </div>
     </div>
 
 </div>

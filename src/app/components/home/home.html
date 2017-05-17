@@ -12,8 +12,12 @@
     </header>
     <div class="search">
         <div class="search__form-wrapper">
-            <input type="text" name="search" class="search__input" ng-model="homeCtrl.searchString" placeholder="Search for artist or album title">
-            <button class="search__button" ng-click="homeCtrl.onSearch()">Search</button>
+            <input type="text" name="search" class="search__input" placeholder="Search for artist or album title"
+                ng-model="homeCtrl.searchString" ng-keypress="homeCtrl.onKeyPress($event)">
+            <button class="search__button" ng-click="homeCtrl.onSearch()">
+                <span ng-if="!homeCtrl.isSearching">Search</span>
+                <span ng-if="homeCtrl.isSearching" >Searching...</span>
+                </button>
 
         </div>
     </div>

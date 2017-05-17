@@ -1,12 +1,6 @@
 import './_spotify-modal.scss';
 import spotifyModalTemplate from './spotify-modal.html';
 
-/**
- *  Example Usage:
- *  <spotify-modal
- *      
- *  </spotify-search>
- */
 
 const spotifyModal = {
     templateUrl: spotifyModalTemplate,
@@ -18,17 +12,16 @@ const spotifyModal = {
     },
 };
 
-// spotifyModalController.inject = [''];
-/*
-function spotifyModalController() {
+/*spotifyModalController.inject = ['Spotify'];
+
+function spotifyModalController(Spotify) {
     const ctrl = this;
 
-    ctrl.$onInit = function() {
-        ctrl.isEditing = false;
+    ctrl.isFetching = true;
+    ctrl.current = null;
 
-        // methods
-        //ctrl.edit = edit;
-    };
+    // methods
+
 
 
 }*/

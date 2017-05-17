@@ -117,7 +117,8 @@
         display: inline-block;
         -webkit-box-shadow: 0 0 40px 11px rgba(0,0,0,.17);
         -moz-box-shadow: 0 0 40px 11px rgba(0,0,0,.17);
-        box-shadow: 0 0 40px 11px rgba(0,0,0,.17);    
+        box-shadow: 0 0 40px 11px rgba(0,0,0,.17);
+        cursor: pointer;
     }
 
     &__footer {
@@ -131,6 +132,12 @@
         text-overflow: ellipsis;
         text-align: left;
 
+    }
+
+    &__image-container {
+        width: 100%;
+        max-height: 250px;
+        overflow: hidden;
     }
 
 }
